@@ -8,27 +8,27 @@ from django.contrib.auth.decorators import login_required
 from .models import Customer, Product, Tag, Order
 from .forms import OrderForm, CreateUserForm
 from .filters import OrderFilter
+from .decorators import unauthenticated_user 
 
 # Create your views here.
 
 
+@unauthenticated_user
 def registerPage(request):
-    if request.user.is_authenticated:
-        return redirect('home')
-    else:
-        form = CreateUserForm()
-        if request.method == 'POST':
-            form = CreateUserForm(request.POST)
-            if form.is_valid():
-                form.save()
-                user = form.cleaned_data.get('username')
-                messages.success(request, 'Account was created for ' + user)
-                return redirect('login')
+    form = CreateUserForm()
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            user = form.cleaned_data.get('username')
+            messages.success(request, 'Account was created for ' + user)
+            return redirect('login')
 
-        context = {'form':form}
-        return render(request, 'accounts/register.html', context)
+    context = {'form':form}
+    return render(request, 'accounts/register.html', context)
 
 
+@unauthenticated_user
 def loginPage(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -47,6 +47,7 @@ def loginPage(request):
 
 
 def logoutUser(request):
+    logout(request)
     return redirect('login')
 
 
