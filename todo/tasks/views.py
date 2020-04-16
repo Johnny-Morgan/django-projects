@@ -16,3 +16,10 @@ def index(request):
 
     context = {'tasks':tasks, 'form':form}
     return render(request, 'tasks/list.html', context)
+
+
+def updateTask(request, pk):
+    task = Task.objects.get(id=pk)
+    form = TaskForm(instance=task)
+    context = {'form':form}
+    return render(request, 'tasks/update_task.html', context)
