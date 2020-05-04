@@ -2,6 +2,7 @@
 {% block content %}
 
 <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <h1 class="text-center mb-5">{{ question.question_text }}</h1>
 
@@ -20,6 +21,15 @@
 <a href="{% url 'polls:detail' question.id %}" class="btn btn-dark">Vote Again?</a>
 
 <script>
+    var objId = "{{question.id}}"
+    var dataURL = `/polls/resultsdata/${objId}/`
+    $.ajax({
+        method: 'GET',
+        url: dataURL,
+        success: function(response){
+            console.log('RESPONSE', response)
+        }
+    })
 
     var chartData = {
         "type":"bar",
