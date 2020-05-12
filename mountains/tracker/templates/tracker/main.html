@@ -2,17 +2,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+    crossorigin="anonymous">
     <title>Mountains</title>
 </head>
 <body>
-    <h1>Navbar</h1>
-    <hr>
+    {% include 'tracker/navbar.html' %}
 
     {% block content %}
     
     {% endblock %}
-    
+
     <hr>
-    <h5>Copright &copy 2020 John Morgan</h5>
+    <p>Copright &copy 2020 John Morgan</p>
 </body>
 </html>
