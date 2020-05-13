@@ -1,5 +1,38 @@
 {% extends 'tracker/main.html' %}
 
 {% block content %}
-    <p>Dashboard</p>
+{% include 'tracker/status.html' %}
+<div class="row">
+    <div class="col-md-6">
+        <br>
+        <h5>LAST 5 MOUNTAINS</h5>
+        <hr>
+        <div class="card card-body">
+            <a class="btn btn-primary btn-sm btn-block" href="">Add Mountain</a>
+            <table class="table table-sm">
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <br>
+        <h5>LAST 5 HIKES</h5>
+        <hr>
+        <div class="card card-body">
+            <a class="btn btn-primary btn-sm btn-block" href="">Add Hike</a>
+            <table class="table table-sm">
+                <tr>
+                    <th>Length</th>
+                    <th>Time</th>
+                    <th>Date</th>
+                    <th>Update</th>
+                    <th>Remove</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
 {% endblock %}
