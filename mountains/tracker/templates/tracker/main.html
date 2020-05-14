@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
@@ -5,36 +7,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
     rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
     crossorigin="anonymous">
-
-    <style>
-        /* #logo {
-            
-        } */
-
-        body {
-            background-color: #ebeff5;
-        }
-
-        #total-hills {
-            background-color: #4cb4c7;
-        }
-
-        #total-mountains {
-            background-color: #7abecc;
-        }
-
-        #total-hikes {
-            background-color: #7cd1c0;
-        }
-
-        #footer{
-            display: table;
-            text-align: center;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-    </style>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
 
     <title>Mountains</title>
 </head>
@@ -48,7 +21,7 @@
     <hr>
     <br>
     <div id="footer">
-        <p>Copright &copy 2020 John Morgan</p>
+        <p>Copright &copy 2020 John Morgan. Icon made by Freepik from www.flaticon.com</p>
     </div>
     
 </body>

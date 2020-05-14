@@ -1,0 +1,26 @@
+ /* #logo {
+            
+        } */
+
+body {
+    background-color: #ebeff5;
+}
+
+#total-hills {
+    background-color: #4cb4c7;
+}
+
+#total-mountains {
+    background-color: #7abecc;
+}
+
+#total-hikes {
+    background-color: #7cd1c0;
+}
+
+#footer{
+    display: table;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
