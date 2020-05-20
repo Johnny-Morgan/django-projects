@@ -11,12 +11,25 @@
         <div class="card card-body">
             <table class="table">
                 <tr>
-                    <th>Length</th>
+                    <th>Length (km)</th>
                     <th>Duration</th>
-                    <th>Total Ascent</th>
-                    <th>Total Descent</th>
-                    <th>Notes</th>
+                    <th>Total Ascent (m)</th>
+                    <th>Total Descent (m)</th>
+                    <th>Date</th>
+                    <!-- <th>Notes</th> -->
                 </tr>
+                {% for hike in hikes %}
+                <tr>
+                    <td>{{hike.length}}</td>
+                    <td>{{hike.duration}}</td>
+                    <td>{{hike.total_ascent}}</td>
+                    <td>{{hike.total_descent}}</td>
+                    <td>{{hike.hike_date}}</td>
+                    <!-- <td>{{hike.notes}}</td> -->
+                    <td><a href="">Update</a></td>
+                    <td><a href="">Delete</a></td>
+                </tr>
+                {% endfor %}
             </table>
         </div>
 

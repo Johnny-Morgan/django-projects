@@ -16,6 +16,16 @@
                     <th>Area</th>
                     <th>Date Climbed</th>
                 </tr>
+
+                {% for mountain in mountains %}
+                   <tr>
+                       <td>{{mountain.name}}</td>
+                       <td>{{mountain.height}}</td>
+                       <td>{{mountain.area}}</td>
+                       <td>{{mountain.date_climbed}}</td>
+                   </tr> 
+               
+                {% endfor %}
             </table>
         </div>
 
