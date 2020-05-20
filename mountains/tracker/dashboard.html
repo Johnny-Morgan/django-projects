@@ -1,0 +1,53 @@
+{% extends 'tracker/main.html' %}
+
+{% block content %}
+{% include 'tracker/status.html' %}
+
+<div class="row">
+    <div class="col-md-6">
+        <br>
+        <hr>
+        <div class="card card-body" style="margin-left: 1em;">
+            <h5 style="text-align: center; padding-bottom: 1em;">LAST 5 MOUNTAINS</h5>
+            <a class="btn btn-primary btn-sm btn-block" href="">Add Mountain</a>
+            <table class="table table-sm">
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                </tr>
+                {% for mountain in last_5_mountains %}
+                <tr>
+                    <td>{{mountain.name}}</td>
+                    <td>{{mountain.date_climbed}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <br>
+        <hr>
+        <div class="card card-body" style="margin-right: 1em;">
+            <h5 style="text-align: center; padding-bottom: 1em;">LAST 5 HIKES</h5>
+            <a class="btn btn-primary btn-sm btn-block" href="">Add Hike</a>
+            <table class="table table-sm">
+                <tr>
+                    <th>Length (km)</th>
+                    <th>Time</th>
+                    <th>Date</th>
+                    <th>Update</th>
+                    <th>Remove</th>
+                </tr>
+                {% for hike in last_5_hikes %}
+                <tr>
+                    <td>{{hike.length}}</td>
+                    <td>{{hike.duration}}</td>
+                    <td>{{hike.hike_date}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'tracker/main.html' %}
+
+{% block content %}
+<br>
+
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+            <h5>Mountains</h5>
+        </div>
+        <div class="card card-body">
+            <table class="table">
+                <tr>
+                    <th>Name</th>
+                    <th>Height</th>
+                    <th>Area</th>
+                    <th>Date Climbed</th>
+                </tr>
+
+                {% for mountain in mountains %}
+                   <tr>
+                       <td>{{mountain.name}}</td>
+                       <td>{{mountain.height}}</td>
+                       <td>{{mountain.area}}</td>
+                       <td>{{mountain.date_climbed}}</td>
+                   </tr> 
+               
+                {% endfor %}
+            </table>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
