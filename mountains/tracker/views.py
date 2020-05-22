@@ -10,8 +10,8 @@ def home(request):
     last_5_hikes = hikes.order_by('-hike_date')[:5]
 
     # height < 300m is a hill
-    total_hills = Mountain.objects.all().filter(height__lt=300).count()
-    total_mountains = Mountain.objects.all().filter(height__gte=300).count()
+    total_hills = Mountain.objects.all().filter(height__lt=500).count()
+    total_mountains = Mountain.objects.all().filter(height__gte=500).count()
     total_hikes = hikes.count()
 
     context = {'last_5_mountains': last_5_mountains, 'last_5_hikes': last_5_hikes,
@@ -20,11 +20,16 @@ def home(request):
     return render(request, 'tracker/dashboard.html', context)
 
 def mountains(request):
-    mountains = Mountain.objects.all() 
+    mountains = Mountain.objects.all().order_by('-date_climbed')
     context = {'mountains': mountains}
     return render(request, 'tracker/mountains.html', context)
 
 def hikes(request):
-    hikes = Hike.objects.all()
+    hikes = Hike.objects.all().order_by('-hike_date')
     context = {'hikes': hikes}
     return render(request, 'tracker/hikes.html', context)
+
+def peak(request, pk):
+    peak = Mountain.objects.get(id=pk)
+    context = {'peak':peak}
+    return render(request, 'tracker/peak.html', context)

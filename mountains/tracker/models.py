@@ -9,6 +9,8 @@ class Mountain(models.Model):
     )
     name = models.CharField(max_length=200, null=True)
     height = models.DecimalField(max_digits=6, decimal_places=2, null=True)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6, null=True) 
+    latitude = models.DecimalField(max_digits=9, decimal_places=6, null=True)
     area = models.CharField(max_length=200, null=True, choices=AREAS)
     date_climbed = models.DateField(null=True)
 
