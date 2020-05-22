@@ -6,4 +6,5 @@ urlpatterns = [
     path('mountains/', views.mountains, name="mountains"),
     path('hikes/', views.hikes, name="hikes"),
     path('peak/<str:pk>/', views.peak, name="peak"),
+    path('add_mountain_form/', views.addMountain, name="add_mountain"),
 ]

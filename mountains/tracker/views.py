@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Mountain, Hike
+from .forms import MountainForm
 
 def home(request):
     mountains = Mountain.objects.all()
@@ -33,3 +34,15 @@ def peak(request, pk):
     peak = Mountain.objects.get(id=pk)
     context = {'peak':peak}
     return render(request, 'tracker/peak.html', context)
+
+def addMountain(request):
+    form = MountainForm()
+    if request.method == 'POST':
+        print(request.POST)
+        form = MountainForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    context = {'form': form}
+    return render(request, 'tracker/add_mountain_form.html', context)
