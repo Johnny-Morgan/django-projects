@@ -42,7 +42,19 @@ def addMountain(request):
         form = MountainForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('/mountains/')
 
+    context = {'form': form}
+    return render(request, 'tracker/add_mountain_form.html', context)
+
+def updateMountain(request, pk):
+    mountain = Mountain.objects.get(id=pk)
+    form = MountainForm(instance=mountain)
+
+    if request.method == 'POST':
+        form = MountainForm(request.POST, instance=mountain)
+        if form.is_valid():
+            form.save()
+            return redirect(f'/peak/{pk}/')
     context = {'form': form}
     return render(request, 'tracker/add_mountain_form.html', context)
