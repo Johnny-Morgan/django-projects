@@ -58,3 +58,11 @@ def updateMountain(request, pk):
             return redirect(f'/peak/{pk}/')
     context = {'form': form}
     return render(request, 'tracker/add_mountain_form.html', context)
+
+def deleteMountain(request, pk):
+    mountain = Mountain.objects.get(id=pk)
+    if request.method == 'POST':
+        mountain.delete()
+        return redirect('/')
+    context = {'mountain': mountain}
+    return render(request, 'tracker/delete.html', context)
