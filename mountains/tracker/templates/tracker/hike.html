@@ -1,0 +1,63 @@
+{% extends 'tracker/main.html' %}
+{% block content %}
+
+<br>
+
+<div class="row" style="padding: 0em 1em">
+    <div class="col-md-4">
+        <div class="card card-body">
+            <h5>{{hike.name}}</h5>
+            <hr>
+            <a class="btn btn-outline-info btn-sm btn-block" href="">Update Hike</a>
+            <a class="btn btn-outline-danger btn-sm btn-block" href="">Delete Hike</a>
+        </div>
+    </div>
+
+    <div class="col-md">
+        <div class="card card-body">
+            <h5>Notes:</h5>
+            <hr>
+            {{hike.notes}}
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div class="row ml-0">
+    <div class="col">
+        <div class="card card-body">
+            <form method="get">
+               
+                <button class="btn btn-primary" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="row ml-0 mt-4">
+    <div class="col-md">
+        <div class="card card-body">
+            <table class="table table-sm">
+                <tr>
+                    <th>Length (km)</th>
+                    <th>Duration</th>
+                    <th>Total Ascent (m)</th>
+                    <th>Total Descent (m)</th>
+                    <th>Date </th>
+                </tr>
+                
+                <tr>
+                    <td>{{hike.length}}</td>
+                    <td>{{hike.duration}}</td>
+                    <td>{{hike.total_ascent}}</td>
+                    <td>{{hike.total_descent}}</td>
+                    <td>{{hike.hike_date}}</td>
+                    
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

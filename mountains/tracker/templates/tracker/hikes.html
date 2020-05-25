@@ -6,11 +6,13 @@
 <div class="row">
     <div class="col-md">
         <div class="card card-body">
-            <h5>Hikes</h5>
+            <a class="btn btn-primary btn-block" href="">Add Hike</a>
         </div>
+        <br>
         <div class="card card-body">
             <table class="table">
                 <tr>
+                    <th></th>
                     <th>Length (km)</th>
                     <th>Duration</th>
                     <th>Total Ascent (m)</th>
@@ -19,15 +21,15 @@
                     <!-- <th>Notes</th> -->
                 </tr>
                 {% for hike in hikes %}
-                <tr>
+                <tr><td><a class="btn btn-sm btn-info" href="{% url 'hike' hike.id %}">View</a></td>
                     <td>{{hike.length}}</td>
                     <td>{{hike.duration}}</td>
                     <td>{{hike.total_ascent}}</td>
                     <td>{{hike.total_descent}}</td>
                     <td>{{hike.hike_date}}</td>
                     <!-- <td>{{hike.notes}}</td> -->
-                    <td><a href="">Update</a></td>
-                    <td><a href="">Delete</a></td>
+                    <!-- <td><a href="">Update</a></td>
+                    <td><a href="">Delete</a></td> -->
                 </tr>
                 {% endfor %}
             </table>

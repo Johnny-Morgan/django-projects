@@ -66,3 +66,8 @@ def deleteMountain(request, pk):
         return redirect('/')
     context = {'mountain': mountain}
     return render(request, 'tracker/delete.html', context)
+
+def hike(request, pk):
+    hike = Hike.objects.get(id=pk)
+    context = {'hike':hike}
+    return render(request, 'tracker/hike.html', context)

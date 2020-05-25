@@ -3,12 +3,13 @@
 {% block content %}
 {% include 'tracker/status.html' %}
 
-<div class="row">
+<div class="row ml-0">
     <div class="col-md-6">
         <br>
-        <div class="card card-body" style="margin-left: 1em;">
-            <h5 style="text-align: center; padding-bottom: 1em;">LAST 5 MOUNTAINS</h5>
-            <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'add_mountain' %}">Add Mountain</a>
+        <div class="card card-body">
+            <h5 style="text-align: center; padding-bottom: 1em;">Last 5 Mountains Climbed</h5>
+            <a class="btn btn-primary btn-sm btn-block" href="{% url 'add_mountain' %}">Add Mountain</a>
+            <br>
             <table class="table table-sm">
                 <tr>
                     <th></th>
@@ -29,10 +30,12 @@
     <div class="col-md-6">
         <br>
         <div class="card card-body" style="margin-right: 1em;">
-            <h5 style="text-align: center; padding-bottom: 1em;">LAST 5 HIKES</h5>
-            <a class="btn btn-outline-primary btn-sm btn-block" href="">Add Hike</a>
+            <h5 style="text-align: center; padding-bottom: 1em;">Last 5 Hikes</h5>
+            <a class="btn btn-primary btn-sm btn-block" href="">Add Hike</a>
+            <br>
             <table class="table table-sm">
-                <tr>
+                <tr>    
+                    <th></th>
                     <th>Length (km)</th>
                     <th>Time</th>
                     <th>Date</th>
@@ -41,6 +44,7 @@
                 </tr>
                 {% for hike in last_5_hikes %}
                 <tr>
+                    <td><a class="btn btn-sm btn-info" href="{% url 'hike' hike.id %}">View</a></td>
                     <td>{{hike.length}}</td>
                     <td>{{hike.duration}}</td>
                     <td>{{hike.hike_date}}</td>
