@@ -13,7 +13,7 @@ class Mountain(models.Model):
     latitude = models.DecimalField(max_digits=9, decimal_places=6, null=True)
     area = models.CharField(max_length=200, null=True, choices=AREAS)
     date_climbed = models.DateField(null=True)
-    notes = models.TextField(max_length=400, null=True)
+    notes = models.TextField(max_length=400, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -25,7 +25,7 @@ class Hike(models.Model):
     total_ascent = models.DecimalField(max_digits=6, decimal_places=2, null=True)
     total_descent = models.DecimalField(max_digits=6, decimal_places=2, null=True)
     hike_date = models.DateField(null=True)
-    notes = models.TextField(null=True)
+    notes = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return f'{self.length} km'

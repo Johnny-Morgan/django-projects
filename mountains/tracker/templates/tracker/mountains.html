@@ -1,24 +1,132 @@
 {% extends 'tracker/main.html' %}
 
 {% block content %}
+
 <br>
+<div class="row">
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="total-hills">
+                <div class="card-header">
+                    <h5 class="card-title">Hills Climbed</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{total_hills}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="total-mountains">
+                <div class="card-header">
+                    <h5 class="card-title">Mountains Climbed</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{total_mountains}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="total-hikes">
+                <div class="card-header">
+                     <h5 class="card-title">Total Climbs</h5>
+                </div>
+                <div class="card-body">
+                     <h3 class="card-title">{{total}}</h3>
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="total-hikes">
+                <div class="card-header">
+                     <h5 class="card-title">Highest Mountain</h5>
+                </div>
+                <div class="card-body">
+                     <h4 class="card-title">{{highest_mountain.name}} {{highest_mountain.height}}m</h4>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="total-hikes">
+                <div class="card-header">
+                     <h5 class="card-title">Smallest Mountain/Hill</h5>
+                </div>
+                <div class="card-body">
+                     <h4 class="card-title">{{smallest_mountain.name}} {{smallest_mountain.height}}m</h4>
+                 </div>
+            </div>
+        </div>
+    </div>  --> 
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="total-hills">
+                <div class="card-header">
+                     <h5 class="card-title">Average Hill Height</h5>
+                </div>
+                <div class="card-body">
+                     <h4 class="card-title">{{average_hill_height}}m</h4>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="total-mountains">
+                <div class="card-header">
+                     <h5 class="card-title">Average Mountain Height</h5>
+                </div>
+                <div class="card-body">
+                     <h4 class="card-title">{{average_mountain_height}}m</h4>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="total-hikes">
+                <div class="card-header">
+                     <h5 class="card-title">Average Overall Height</h5>
+                </div>
+                <div class="card-body">
+                     <h4 class="card-title">{{average_height}}m</h4>
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-md">
         <div class="card card-body">
-            <a class="btn btn-outline-primary btn-lg btn-block" href="{% url 'add_mountain' %}">Add Mountain</a>
+            <a class="btn btn-primary btn-block" href="{% url 'add_mountain' %}">Add Mountain</a>
         </div>
         <br>
         <div class="card card-body">
             <table class="table">
                 <tr>    
-                    <th>View</th>
+                    <th></th>
                     <th>Name</th>
                     <th>Height (m)</th>
                     <th>Area</th>
                     <th>Date Climbed</th>
-                    <th>Update</th>
-                    <th>Delete</th>
+                    <!-- <th>Update</th>
+                    <th>Delete</th> -->
                 </tr>
 
                 {% for mountain in mountains %}
@@ -28,8 +136,8 @@
                         <td>{{mountain.height}}</td>
                         <td>{{mountain.area}}</td>
                         <td>{{mountain.date_climbed}}</td>
-                        <td><a class="btn btn-sm btn-primary" href="">Update</a></td>
-                        <td><a class="btn btn-sm btn-danger" href="">Delete</a></td>
+                        <!-- <td><a class="btn btn-sm btn-primary" href="{% url 'update_mountain' mountain.id %}">Update</a></td> -->
+                        <!-- <td><a class="btn btn-sm btn-danger" href="">Delete</a></td> -->
                    </tr> 
                 {% endfor %}
             </table>
