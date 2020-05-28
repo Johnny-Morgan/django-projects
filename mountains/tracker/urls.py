@@ -11,4 +11,5 @@ urlpatterns = [
     path('delete_mountain/<str:pk>/', views.deleteMountain, name="delete_mountain"),
     path('hike/<str:pk>/', views.hike, name="hike"),
     path('add_hike_form/', views.addHike, name="add_hike"),
+    path('update_hike/<str:pk>/', views.updateHike, name="update_hike"),
 ]

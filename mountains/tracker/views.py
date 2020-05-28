@@ -113,3 +113,15 @@ def addHike(request):
 
     context = {'form': form}
     return render(request, 'tracker/add_hike_form.html', context)
+
+def updateHike(request, pk):
+    hike = Hike.objects.get(id=pk)
+    form = HikeForm(instance=hike)
+
+    if request.method == 'POST':
+        form = HikeForm(request.POST, instance=hike)
+        if form.is_valid():
+            form.save()
+            return redirect(f'/hike/{pk}/')
+    context = {'form': form}
+    return render(request, 'tracker/add_hike_form.html', context)
