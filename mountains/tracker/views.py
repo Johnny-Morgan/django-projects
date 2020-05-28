@@ -93,7 +93,7 @@ def deleteMountain(request, pk):
     mountain = Mountain.objects.get(id=pk)
     if request.method == 'POST':
         mountain.delete()
-        return redirect('/')
+        return redirect('/mountains/')
     context = {'mountain': mountain}
     return render(request, 'tracker/delete.html', context)
 
@@ -125,3 +125,11 @@ def updateHike(request, pk):
             return redirect(f'/hike/{pk}/')
     context = {'form': form}
     return render(request, 'tracker/add_hike_form.html', context)
+
+def deleteHike(request, pk):
+    hike = Hike.objects.get(id=pk)
+    if request.method == 'POST':
+        hike.delete()
+        return redirect('/hikes/')
+    context = {'hike': hike}
+    return render(request, 'tracker/delete_hike.html', context)
