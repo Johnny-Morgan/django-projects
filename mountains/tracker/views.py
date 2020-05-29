@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.db.models import Avg
+from django.db.models import Avg, Sum
 from .models import Mountain, Hike
 from .forms import MountainForm, HikeForm
 
@@ -34,13 +34,13 @@ def mountains(request):
 
     # Average mountain height
     average_mountain_height = mountains.filter(height__gte=500).aggregate(Avg('height'))['height__avg']
-    average_mountain_height = (f'{average_mountain_height:.2f}')
+    average_mountain_height = f'{average_mountain_height:.2f}'
     # Average hill height
     average_hill_height = mountains.filter(height__lt=500).aggregate(Avg('height'))['height__avg']
-    average_hill_height = (f'{average_hill_height:.2f}')
+    average_hill_height = f'{average_hill_height:.2f}'
     # Average overall height
     average_height = Mountain.objects.aggregate(Avg('height'))['height__avg']
-    average_height = (f'{average_height:.2f}')
+    average_height = f'{average_height:.2f}'
     
     context = {'mountains': mountains,
                'total_hills': total_hills,
@@ -57,7 +57,70 @@ def mountains(request):
 
 def hikes(request):
     hikes = Hike.objects.all().order_by('-hike_date')
-    context = {'hikes': hikes}
+    total_hikes = hikes.count()
+
+    # total length of hike
+    total_length = Hike.objects.aggregate(Sum('length'))['length__sum']
+    total_length = f'{total_length:.2f}'
+
+    # average length of hike
+    average_length = float(total_length) / total_hikes
+    average_length = f'{average_length:.2f}'
+
+    # total ascent
+    total_ascent = Hike.objects.aggregate(Sum('total_ascent'))['total_ascent__sum']
+    total_ascent = f'{total_ascent:.2f}'
+
+    # average ascent
+    average_ascent = float(total_ascent) / total_hikes
+    average_ascent = f'{average_ascent:.2f}'
+
+    # total descent
+    total_descent = Hike.objects.aggregate(Sum('total_descent'))['total_descent__sum']
+    total_descent = f'{total_descent:.2f}'
+
+    # average descent
+    average_descent = float(total_descent) / total_hikes
+    average_descent = f'{average_descent:.2f}'
+    
+    # total time
+    hikes = Hike.objects.all().order_by('-hike_date')
+    hours = 0
+    minutes = 0
+    seconds = 0
+    for hike in hikes:
+        hours += int(hike.duration.split(':')[0])
+        minutes += int(hike.duration.split(':')[1])
+        seconds += int(hike.duration.split(':')[2])
+    minutes += seconds // 60
+    seconds %= 60
+    hours += minutes // 60
+    minutes %= 60
+    total_time = f'{hours}:{minutes}:{seconds}'
+    
+    # average time
+    total_seconds = seconds + minutes * 60 + hours * 3600
+    average_seconds = total_seconds / total_hikes
+    average_time = average_seconds / 3600
+    average_time = f'{average_time:.2f}'
+
+    # average speed
+    average_speed = (float(total_length) / total_hikes) / (average_seconds / 3600)
+    average_speed = f'{average_speed:.2f}'
+
+    context = {'hikes': hikes,
+               'total_hikes': total_hikes,
+               'total_length': total_length,
+               'average_length': average_length,
+               'total_ascent': total_ascent,
+               'average_ascent': average_ascent,
+               'total_descent': total_descent,
+               'average_descent': average_descent,
+               'total_time': total_time,
+               'average_time': average_time,
+               'average_speed': average_speed,
+               }
+               
     return render(request, 'tracker/hikes.html', context)
 
 def peak(request, pk):
