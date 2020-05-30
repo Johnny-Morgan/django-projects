@@ -3,14 +3,16 @@
 {% block content %}
 
 <div class="row" style="padding: 1em">
-    <div class="col-md-3">
+    <div class="col-md-5">
+        <h4>Add a new mountain</h4>
         <div class="card card-body">
             <form action="" method="POST">
                 {% csrf_token %}
                 <table>
                     {{form.as_table}}
                 </table>
-                <input type="submit" value="Save">
+                <input class="btn btn-sm btn-primary" type="submit" value="Save">
+                <a class="btn btn-sm btn-warning" href="{% url 'mountains' %}">Cancel</a>
             </form>
         </div>
     </div>
