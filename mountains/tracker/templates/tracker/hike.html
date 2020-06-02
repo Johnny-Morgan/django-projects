@@ -1,15 +1,27 @@
 {% extends 'tracker/main.html' %}
+{% load static %}
 {% block content %}
 
-<br>
+<style>
+    #featured {
+    max-width: 500px;
+    max-height: 600px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 1px solid black
+}
+</style>
 
+<br>
 <div class="row" style="padding: 0em 1em">
     <div class="col-md-4">
         <div class="card card-body">
             <h5>{{hike.name}}</h5>
             <hr>
-            <a class="btn btn-outline-info btn-sm btn-block" href="">Update Hike</a>
-            <a class="btn btn-outline-danger btn-sm btn-block" href="">Delete Hike</a>
+            <img id="featured" src="{{hike.imageURL}}">
+            <hr>
+            <a class="btn btn-outline-info btn-sm btn-block" href="{% url 'update_hike' hike.id %}">Update Hike</a>
+            <a class="btn btn-outline-danger btn-sm btn-block" href="{% url 'delete_hike' hike.id %}">Delete Hike</a>
         </div>
     </div>
 
@@ -22,18 +34,16 @@
     </div>
 </div>
 
-<br>
-
-<div class="row ml-0">
+<!-- <div class="row ml-0">
     <div class="col">
         <div class="card card-body">
             <form method="get">
-               
+    
                 <button class="btn btn-primary" type="submit">Search</button>
             </form>
         </div>
     </div>
-</div>
+</div> -->
 
 <div class="row ml-0 mt-4">
     <div class="col-md">
@@ -53,7 +63,6 @@
                     <td>{{hike.total_ascent}}</td>
                     <td>{{hike.total_descent}}</td>
                     <td>{{hike.hike_date}}</td>
-                    
                 </tr>
             </table>
         </div>
