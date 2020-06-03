@@ -4,69 +4,68 @@
 
 <style>
     #featured {
-    max-width: 500px;
-    max-height: 600px;
+    max-width: 700px;
+    max-height: 500px;
     object-fit: cover;
     cursor: pointer;
     border: 1px solid black
 }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 </style>
 
 <br>
-<div class="row" style="padding: 0em 1em">
-    <div class="col-md-4">
-        <div class="card card-body">
-            <h5>{{hike.name}}</h5>
-            <hr>
-            <img id="featured" src="{{hike.imageURL}}">
-            <hr>
-            <a class="btn btn-outline-info btn-sm btn-block" href="{% url 'update_hike' hike.id %}">Update Hike</a>
-            <a class="btn btn-outline-danger btn-sm btn-block" href="{% url 'delete_hike' hike.id %}">Delete Hike</a>
+<div class="row ml-3">
+    <div class="col-md-6">
+        <div class="row">
+            <div class="card card-body">
+                <h5>Hike: {{hike.name}}</h5>
+                <hr>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="card card-body">
+                <h5>Notes:</h5>
+                <hr>
+                {{hike.notes}}
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="card card-body">
+                <h5>Stats:</h5>
+                <hr>
+                <ul>
+                    <li><strong>Length:</strong> {{hike.length}} km</li>
+                    <li><strong>Duration:</strong> {{hike.duration}} </li>
+                    <li><strong>Total Ascent:</strong> {{hike.total_ascent}} m</li>
+                    <li><strong>Total Descent:</strong> {{hike.total_descent}} m</li>
+                    <li><strong>Date:</strong> {{hike.hike_date}}</li>
+                </ul>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="card card-body">
+                <a class="btn btn-outline-info btn-sm btn-block" href="{% url 'update_hike' hike.id %}">Update Hike</a>
+                <a class="btn btn-outline-danger btn-sm btn-block" href="{% url 'delete_hike' hike.id %}">Delete Hike</a>
+            </div>
         </div>
     </div>
 
-    <div class="col-md">
+    <div class="col-md-6">
         <div class="card card-body">
-            <h5>Notes:</h5>
-            <hr>
-            {{hike.notes}}
-        </div>
-    </div>
-</div>
-
-<!-- <div class="row ml-0">
-    <div class="col">
-        <div class="card card-body">
-            <form method="get">
-    
-                <button class="btn btn-primary" type="submit">Search</button>
-            </form>
-        </div>
-    </div>
-</div> -->
-
-<div class="row ml-0 mt-4">
-    <div class="col-md">
-        <div class="card card-body">
-            <table class="table table-sm">
-                <tr>
-                    <th>Length (km)</th>
-                    <th>Duration</th>
-                    <th>Total Ascent (m)</th>
-                    <th>Total Descent (m)</th>
-                    <th>Date </th>
-                </tr>
-                
-                <tr>
-                    <td>{{hike.length}}</td>
-                    <td>{{hike.duration}}</td>
-                    <td>{{hike.total_ascent}}</td>
-                    <td>{{hike.total_descent}}</td>
-                    <td>{{hike.hike_date}}</td>
-                </tr>
-            </table>
+            {% if hike.imageURL %}
+                <img id="featured" src="{{hike.imageURL}}">
+            {% else %}
+                <h5>No Photos</h5>
+            {% endif %}
         </div>
     </div>
 </div>
-
 {% endblock %}
