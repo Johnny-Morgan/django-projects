@@ -84,7 +84,6 @@ def hikes(request):
     average_descent = f'{average_descent:.2f}'
     
     # total time
-    hikes = Hike.objects.all().order_by('-hike_date')
     hours = 0
     minutes = 0
     seconds = 0
@@ -131,8 +130,7 @@ def peak(request, pk):
 def addMountain(request):
     form = MountainForm()
     if request.method == 'POST':
-        print(request.POST)
-        form = MountainForm(request.POST)
+        form = MountainForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('/mountains/')
@@ -145,7 +143,7 @@ def updateMountain(request, pk):
     form = MountainForm(instance=mountain)
 
     if request.method == 'POST':
-        form = MountainForm(request.POST, instance=mountain)
+        form = MountainForm(request.POST, request.FILES, instance=mountain)
         if form.is_valid():
             form.save()
             return redirect(f'/peak/{pk}/')
@@ -162,14 +160,21 @@ def deleteMountain(request, pk):
 
 def hike(request, pk):
     hike = Hike.objects.get(id=pk)
-    context = {'hike':hike}
+    hours = int(hike.duration.split(':')[0])
+    minutes = int(hike.duration.split(':')[1])
+    seconds = int(hike.duration.split(':')[2])
+    total_time = hours * 3600 + minutes * 60 + seconds
+    
+    # average speed
+    average_speed = float(hike.length) / (total_time / 3600)
+    average_speed = f'{average_speed:.2f}'
+    context = {'hike':hike, 'average_speed': average_speed}
     return render(request, 'tracker/hike.html', context)
 
 def addHike(request):
     form = HikeForm()
     if request.method == 'POST':
-        print(request.POST)
-        form = HikeForm(request.POST)
+        form = HikeForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('/hikes/')
@@ -182,7 +187,7 @@ def updateHike(request, pk):
     form = HikeForm(instance=hike)
 
     if request.method == 'POST':
-        form = HikeForm(request.POST, instance=hike)
+        form = HikeForm(request.POST, request.FILES, instance=hike)
         if form.is_valid():
             form.save()
             return redirect(f'/hike/{pk}/')
