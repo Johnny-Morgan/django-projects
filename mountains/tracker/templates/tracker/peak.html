@@ -1,72 +1,76 @@
 {% extends 'tracker/main.html' %}
 {% block content %}
 
-<br>
+<style>
+    #featured {
+    max-width: 700px;
+    max-height: 500px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 1px solid black
+}
 
-<div class="row" style="padding: 0em 1em">
-    <div class="col-md">
-        <div class="card card-body">
-            <h5>Mountain:</h5>
-            <hr>
-            <a class="btn btn-outline-info btn-sm btn-block" href="">Update Mountain</a>
-            <a class="btn btn-outline-danger btn-sm btn-block" href="#">Delete Mountain</a>
-        </div>
-    </div>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 
-    <div class="col-md">
-        <div class="card card-body">
-            <h5>Notes</h5>
-            <hr>
-        </div>
-    </div>
-
-    <div class="col-md">
-        <div class="card card-body">
-            <h5>Times Climbed:</h5>
-            <hr>
-        </div>
-    </div>
-</div>
+ul li {
+  padding: 5px;
+}
+</style>
 
 <br>
-
-<div class="row" style="padding: 0em 1em">
-    <div class="col">
+<div class="row ml-3">
+    <div class="col-md-6">
+        <div class="row">
+            <div class="card card-body">
+                <h5>{{peak.name}}</h5>
+                <hr>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="card card-body">
+                <h5>Notes:</h5>
+                <hr>
+                {{peak.notes}}
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="card card-body">
+                <h5>Stats:</h5>
+                <hr>
+                <ul>
+                    <li><strong>Name:</strong> {{peak.name}}</li>
+                    <li><strong>Height:</strong> {{peak.height}} m</li>
+                    <li><strong>Longitudet:</strong> {{peak.longitude}}</li>
+                    <li><strong>Latitude:</strong> {{peak.latitude}}</li>
+                    <li><strong>Area:</strong> {{peak.area}}</li>
+                    <li><strong>Date Climbed:</strong> {{peak.date_climbed}}</li>
+                </ul>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="card card-body">
+                <a class="btn btn-outline-info btn-sm btn-block" href="{% url 'update_mountain' peak.id %}">Update Mountain</a>
+                <a class="btn btn-outline-danger btn-sm btn-block" href="{% url 'delete_mountain' peak.id %}">Delete Mountain</a>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="col-md-6">
         <div class="card card-body">
-            <form method="get">
-               
-                <button class="btn btn-primary" type="submit">Search</button>
-            </form>
+            {% if peak.imageURL %}
+                <img id="featured" src="{{peak.imageURL}}">
+            {% else %}
+                <h5>No Photos</h5>
+            {% endif %}
         </div>
     </div>
 </div>
-
-<div class="row" style="padding: 1em 1em">
-    <div class="col-md">
-        <div class="card card-body">
-            <table class="table table-sm">
-                <tr>
-                    <th>Name</th>
-                    <th>Height (m)</th>
-                    <th>Longitude</th>
-                    <th>Latitude</th>
-                    <th>Area</th>
-                    <th>Date Climbed</th>
-                </tr>
-                
-                <tr>
-                    <td>{{peak.name}}</td>
-                    <td>{{peak.height}}</td>
-                    <td>{{peak.longitude}}</td>
-                    <td>{{peak.latitude}}</td>
-                    <td>{{peak.area}}</td>
-                    <td>{{peak.date_climbed}}</td>
-                    
-                </tr>
-               
-            </table>
-        </div>
-    </div>
-</div>
-
 {% endblock %}
