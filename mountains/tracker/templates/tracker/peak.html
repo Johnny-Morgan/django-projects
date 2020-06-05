@@ -1,28 +1,11 @@
 {% extends 'tracker/main.html' %}
+{% load static %}
 {% block content %}
 
-<style>
-    #featured {
-    max-width: 700px;
-    max-height: 500px;
-    object-fit: cover;
-    cursor: pointer;
-    border: 1px solid black
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-ul li {
-  padding: 5px;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
 
 <br>
-<div class="row ml-3">
+<div class="row mx-3">
     <div class="col-md-6">
         <div class="row">
             <div class="card card-body">

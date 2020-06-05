@@ -2,29 +2,14 @@
 {% load static %}
 {% block content %}
 
-<style>
-    #featured {
-    max-width: 700px;
-    max-height: 500px;
-    object-fit: cover;
-    cursor: pointer;
-    border: 1px solid black
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
 
 <br>
-<div class="row ml-3">
+<div class="row mx-3">
     <div class="col-md-6">
         <div class="row">
             <div class="card card-body">
                 <h5>Hike: {{hike.name}}</h5>
-                <hr>
             </div>
         </div>
         <br>
@@ -43,6 +28,7 @@ ul {
                 <ul>
                     <li><strong>Length:</strong> {{hike.length}} km</li>
                     <li><strong>Duration:</strong> {{hike.duration}} </li>
+                    <li><strong>Avg Speed:</strong> {{average_speed}} km/h</li>
                     <li><strong>Total Ascent:</strong> {{hike.total_ascent}} m</li>
                     <li><strong>Total Descent:</strong> {{hike.total_descent}} m</li>
                     <li><strong>Date:</strong> {{hike.hike_date}}</li>
@@ -51,13 +37,16 @@ ul {
         </div>
         <br>
         <div class="row">
-            <div class="card card-body">
+            <div class="card card-body mr-4">
                 <a class="btn btn-outline-info btn-sm btn-block" href="{% url 'update_hike' hike.id %}">Update Hike</a>
+            </div>
+            <div class="card card-body">
                 <a class="btn btn-outline-danger btn-sm btn-block" href="{% url 'delete_hike' hike.id %}">Delete Hike</a>
             </div>
         </div>
     </div>
-
+    <br>
+    <br>
     <div class="col-md-6">
         <div class="card card-body">
             {% if hike.imageURL %}
