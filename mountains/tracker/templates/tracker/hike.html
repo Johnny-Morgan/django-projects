@@ -54,6 +54,15 @@
             {% else %}
                 <h5>No Photos</h5>
             {% endif %}
+            <div id="slide-wrapper">
+                <img class="arrow" src="{% static 'images/arrow-left.png' %}" >
+                <div id="slider">
+                    {% for image in hike.image_set.all %}
+                    <img class="thumbnail" src="{{image.imageURL}}">
+                    {% endfor %}
+                </div>
+                <img class="arrow" src="{% static 'images/arrow-right.png' %}" >
+            </div>
         </div>
     </div>
 </div>
