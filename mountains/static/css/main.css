@@ -1,7 +1,3 @@
- /* #logo {
-            
-        } */
-
 body {
     background-color: #ebeff5;
 }
@@ -18,9 +14,68 @@ body {
     background-color: #7cd1c0;
 }
 
-#footer{
+#footer {
     display: table;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+}
+
+#featured {
+    width: 825px;
+    height: 500px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 1px solid black
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul li {
+  padding: 5px;
+}
+
+#slider {
+    width: 825px;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+}
+
+.thumbnail {
+    object-fit: cover;
+    max-width: 180px;
+    max-height: 100px;
+    cursor: pointer;
+    opacity: 0.67;
+    margin: 5px;
+    border: 1px solid black;
+}
+
+.thumbnail:hover {
+    opacity: 1;
+}
+
+#slide-wrapper {
+    max-width: 825px;
+    display: flex;
+    min-height: 100px;
+    align-items: center;
+}
+
+.arrow {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.arrow:hover {
+    opacity: 0.67;
+    width: 35px;
+    height: 35px;
 }
