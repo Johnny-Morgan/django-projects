@@ -4,7 +4,7 @@
 
 <br>
 <div class="row mx-3">
-    <div class="col-md-6">
+    <div class="col-md-5">
         <div class="row">
             <div class="card card-body">
                 <h5>Hike: {{hike.name}}</h5>
@@ -35,17 +35,15 @@
         </div>
         <br>
         <div class="row">
-            <div class="card card-body mr-4">
-                <a class="btn btn-outline-info btn-sm btn-block" href="{% url 'update_hike' hike.id %}">Update Hike</a>
-            </div>
             <div class="card card-body">
+                <a class="btn btn-outline-info btn-sm btn-block" href="{% url 'update_hike' hike.id %}">Update Hike</a>
                 <a class="btn btn-outline-danger btn-sm btn-block" href="{% url 'delete_hike' hike.id %}">Delete Hike</a>
-            </div>
+           </div>
         </div>
     </div>
     <br>
     <br>
-    <div class="col-md-6">
+    <div class="col-md-7">
         <div class="card card-body">
             {% if hike.imageURL %}
                 <img id="featured" src="{{hike.imageURL}}">
@@ -53,13 +51,15 @@
                 <h5>No Photos</h5>
             {% endif %}
             <div id="slide-wrapper">
+                {% if hike.imageURL %}
                 <img class="arrow" src="{% static 'images/arrow-left.png' %}" >
                 <div id="slider">
                     {% for image in hike.image_set.all %}
                     <img class="thumbnail" src="{{image.imageURL}}">
                     {% endfor %}
                 </div>
-                <img class="arrow" src="{% static 'images/arrow-right.png' %}" >
+                <img class="arrow" src="{% static 'images/arrow-right.png' %}">
+                {% endif %}
             </div>
         </div>
     </div>
