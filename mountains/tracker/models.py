@@ -14,9 +14,18 @@ class Mountain(models.Model):
     area = models.CharField(max_length=200, null=True, choices=AREAS)
     date_climbed = models.DateField(null=True)
     notes = models.TextField(max_length=400, null=True, blank=True)
+    featured_image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.name
+
+    @property
+    def imageURL(self):
+        try:
+            url = self.featured_image.url
+        except:
+            url = ''
+        return url
 
 class Hike(models.Model):
     name = models.CharField(max_length=200, null=True)
@@ -36,7 +45,7 @@ class Hike(models.Model):
         try:
             url = self.featured_image.url
         except:
-            url=''
+            url = ''
         return url
 
 class Image(models.Model):
@@ -48,7 +57,19 @@ class Image(models.Model):
         try:
             url = self.image.url
         except:
-            url=''
+            url = ''
+        print('URL', url)
         return url
 
+class MountainImage(models.Model):
+    peak = models.ForeignKey(Mountain, on_delete=models.CASCADE)
+    image = models.ImageField()
 
+    @property
+    def imageURL(self):
+        try:
+            url = self.image.url
+        except:
+            url = ''
+        print('URL', url)
+        return url
