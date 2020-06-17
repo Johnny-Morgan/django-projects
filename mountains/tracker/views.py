@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.db.models import Avg, Sum
 from .models import Mountain, Hike
 from .forms import MountainForm, HikeForm
+from .filters import MountainFilter
 
 def home(request):
     mountains = Mountain.objects.all()
@@ -41,7 +42,10 @@ def mountains(request):
     # Average overall height
     average_height = Mountain.objects.aggregate(Avg('height'))['height__avg']
     average_height = f'{average_height:.2f}'
-    
+
+    mountain_filter = MountainFilter(request.GET, queryset=mountains)
+    mountains = mountain_filter.qs
+
     context = {'mountains': mountains,
                'total_hills': total_hills,
                'total_mountains': total_mountains,
@@ -50,7 +54,8 @@ def mountains(request):
                'smallest_mountain': smallest_mountain,
                'average_height': average_height,
                'average_mountain_height': average_mountain_height,
-               'average_hill_height': average_hill_height
+               'average_hill_height': average_hill_height,
+               'mountain_filter': mountain_filter,
                }
 
     return render(request, 'tracker/mountains.html', context)
@@ -119,7 +124,6 @@ def hikes(request):
                'average_time': average_time,
                'average_speed': average_speed,
                }
-               
     return render(request, 'tracker/hikes.html', context)
 
 def peak(request, pk):
