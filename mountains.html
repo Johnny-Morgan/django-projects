@@ -1,0 +1,205 @@
+{% extends 'tracker/main.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<br>
+<div class="row m-1">
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="total-hills">
+                <div class="card-header">
+                    <h5 class="card-title">Hills Climbed</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{total_hills}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="total-mountains">
+                <div class="card-header">
+                    <h5 class="card-title">Mountains Climbed</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{total_mountains}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="total-hikes">
+                <div class="card-header">
+                     <h5 class="card-title">Total Climbs</h5>
+                </div>
+                <div class="card-body">
+                     <h3 class="card-title">{{total}}</h3>
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row m-1">
+    <!-- <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="total-hikes">
+                <div class="card-header">
+                     <h5 class="card-title">Highest Mountain</h5>
+                </div>
+                <div class="card-body">
+                     <h4 class="card-title">{{highest_mountain.name}} {{highest_mountain.height}}m</h4>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="total-hikes">
+                <div class="card-header">
+                     <h5 class="card-title">Smallest Mountain/Hill</h5>
+                </div>
+                <div class="card-body">
+                     <h4 class="card-title">{{smallest_mountain.name}} {{smallest_mountain.height}}m</h4>
+                 </div>
+            </div>
+        </div>
+    </div>  --> 
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="total-hills">
+                <div class="card-header">
+                     <h5 class="card-title">Average Hill Height</h5>
+                </div>
+                <div class="card-body">
+                     <h3 class="card-title">{{average_hill_height}} m</h3>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="total-mountains">
+                <div class="card-header">
+                     <h5 class="card-title">Average Mountain Height</h5>
+                </div>
+                <div class="card-body">
+                     <h3 class="card-title">{{average_mountain_height}} m</h3>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="total-hikes">
+                <div class="card-header">
+                     <h5 class="card-title">Average Overall Height</h5>
+                </div>
+                <div class="card-body">
+                     <h3 class="card-title">{{average_height}}  m</h3>
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row m-3">
+    <div class="col-md">
+        <div id="accordion">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <div data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Filter Mountains
+                        </div>
+                      </h5>
+                </div>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <form method="get">
+                            <div class="row">
+                                <div class="form-group col-sm-4 col-md-3">
+                                    {{ mountain_filter.form.name.label_tag }}
+                                    {% render_field mountain_filter.form.name class="form-control" %}
+                                </div>
+                                <div class="form-group col-sm-4 col-md-3">
+                                    {{ mountain_filter.form.area.label_tag }}
+                                    {% render_field mountain_filter.form.area class="form-control" %}
+                                </div>
+                                <div class="form-group col-sm-4 col-md-3">
+                                    {{ mountain_filter.form.notes.label_tag }}
+                                    {% render_field mountain_filter.form.notes class="form-control" %}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-4 col-md-3">
+                                    {{ mountain_filter.form.less_than_height.label_tag }}
+                                    {% render_field mountain_filter.form.less_than_height class="form-control" %}
+                                </div>
+                                <div class="form-group col-sm-4 col-md-3">
+                                    {{ mountain_filter.form.greater_than_height.label_tag }}
+                                    {% render_field mountain_filter.form.greater_than_height class="form-control" %}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-4 col-md-3">
+                                    {{ mountain_filter.form.start_date.label_tag }}
+                                    {% render_field mountain_filter.form.start_date class="form-control" %}
+                                </div>
+                                <div class="form-group col-sm-4 col-md-3">
+                                    {{ mountain_filter.form.end_date.label_tag }}
+                                    {% render_field mountain_filter.form.end_date class="form-control" %}
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" type="submit">Filter</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row m-3">
+    <div class="col-md">
+        <div class="card card-body">
+            <a class="btn btn-primary btn-block" href="{% url 'add_mountain' %}">Add Mountain</a>
+        </div>
+        <br>
+        <div class="card card-body">
+            <table class="table table-striped table-bordered sortable">
+                <tr>    
+                    <th></th>
+                    <th>Name</th>
+                    <th>Height (m)</th>
+                    <th>Area</th>
+                    <th>Date Climbed</th>
+                    <!-- <th>Update</th>
+                    <th>Delete</th> -->
+                </tr>
+
+                {% for mountain in mountains %}
+                    <tr>
+                        <td><a class="btn btn-sm btn-info" href="{% url 'peak' mountain.id %}">View</a></td>
+                        <td>{{mountain.name}}</td>
+                        <td>{{mountain.height}}</td>
+                        <td>{{mountain.area}}</td>
+                        <td>{{mountain.date_climbed}}</td>
+                        <!-- <td><a class="btn btn-sm btn-primary" href="{% url 'update_mountain' mountain.id %}">Update</a></td> -->
+                        <!-- <td><a class="btn btn-sm btn-danger" href="">Delete</a></td> -->
+                   </tr> 
+                {% endfor %}
+            </table>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
