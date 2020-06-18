@@ -1,5 +1,5 @@
 {% extends 'tracker/main.html' %}
-
+{% load widget_tweaks %}
 {% block content %}
 
 <br>
@@ -111,6 +111,51 @@
     </div>
 </div>
 
+<div class="row m-3">
+    <div class="col">
+        <div class="card card-body">
+            <form method="get">
+                <h5 style="margin-top: 0">Filter Mountains</h5>
+                <hr>
+                <div class="row">
+                    <div class="form-group col-sm-4 col-md-3">
+                        {{ mountain_filter.form.name.label_tag }}
+                        {% render_field mountain_filter.form.name class="form-control" %}
+                    </div>
+                    <div class="form-group col-sm-4 col-md-3">
+                        {{ mountain_filter.form.area.label_tag }}
+                        {% render_field mountain_filter.form.area class="form-control" %}
+                    </div>
+                    <div class="form-group col-sm-4 col-md-3">
+                        {{ mountain_filter.form.notes.label_tag }}
+                        {% render_field mountain_filter.form.notes class="form-control" %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-4 col-md-3">
+                        {{ mountain_filter.form.less_than_height.label_tag }}
+                        {% render_field mountain_filter.form.less_than_height class="form-control" %}
+                    </div>
+                    <div class="form-group col-sm-4 col-md-3">
+                        {{ mountain_filter.form.greater_than_height.label_tag }}
+                        {% render_field mountain_filter.form.greater_than_height class="form-control" %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-4 col-md-3">
+                        {{ mountain_filter.form.start_date.label_tag }}
+                        {% render_field mountain_filter.form.start_date class="form-control" %}
+                    </div>
+                    <div class="form-group col-sm-4 col-md-3">
+                        {{ mountain_filter.form.end_date.label_tag }}
+                        {% render_field mountain_filter.form.end_date class="form-control" %}
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit">Filter</button>
+            </form>
+        </div>
+    </div>
+</div>
 <div class="row m-3">
     <div class="col-md">
         <div class="card card-body">
