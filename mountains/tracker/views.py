@@ -5,6 +5,21 @@ from .models import Mountain, Hike
 from .forms import MountainForm, HikeForm
 from .filters import MountainFilter
 
+def hike_total_seconds(hike_duration):
+    ''' function that converts a duration into seconds'''
+    hike_hours = 0
+    hike_minutes = 0
+    hike_seconds = 0
+    hike_hours += int(hike_duration.split(':')[0])
+    hike_minutes += int(hike_duration.split(':')[1])
+    hike_seconds += int(hike_duration.split(':')[2])
+    hike_minutes += hike_seconds // 60
+    hike_seconds %= 60
+    hike_hours += hike_minutes // 60
+    hike_minutes %= 60
+    total_hike_seconds = hike_seconds + hike_minutes * 60 + hike_hours * 3600
+    return total_hike_seconds
+
 def home(request):
     mountains = Mountain.objects.all()
     hikes = Hike.objects.all()
@@ -62,6 +77,10 @@ def mountains(request):
 
 def hikes(request):
     hikes = Hike.objects.all().order_by('-hike_date')
+    hike_avg_speed = []
+    all_hikes = list(hikes)
+    for hike in all_hikes:
+        hike_avg_speed.append(round(float(hike.length)/(hike_total_seconds(hike.duration)/3600), 2))
     total_hikes = hikes.count()
 
     # total length of hike
@@ -101,6 +120,13 @@ def hikes(request):
     hours += minutes // 60
     minutes %= 60
     total_time = f'{hours}:{minutes}:{seconds}'
+    # format time string for when seconds or mins are less than 10
+    if seconds < 10 and minutes < 10:
+        total_time = f'{hours}:0{minutes}:0{seconds}'
+    elif minutes < 10:
+        total_time = f'{hours}:0{minutes}:{seconds}'
+    elif seconds < 10:
+        total_time = f'{hours}:{minutes}:0{seconds}'
     
     # average time
     total_seconds = seconds + minutes * 60 + hours * 3600
@@ -112,6 +138,8 @@ def hikes(request):
     average_speed = (float(total_length) / total_hikes) / (average_seconds / 3600)
     average_speed = f'{average_speed:.2f}'
 
+    hikes = list(hikes)
+    hikes = zip(hikes, hike_avg_speed)
     context = {'hikes': hikes,
                'total_hikes': total_hikes,
                'total_length': total_length,
