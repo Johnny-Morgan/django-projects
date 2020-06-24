@@ -22,7 +22,9 @@ class HikeFilter(django_filters.FilterSet):
     notes = CharFilter(field_name='notes', lookup_expr='icontains')
     start_date = DateFilter(field_name='hike_date', lookup_expr='gte', label='Hike after (YYYY-MM-DD)')
     end_date = DateFilter(field_name='hike_date', lookup_expr='lte', label='Hike before (YYYY-MM-DD)')
-    
+    less_than_duration = CharFilter(field_name='duration', lookup_expr='lt')
+    greater_than_duration = CharFilter(field_name='duration', lookup_expr='gt')
+
     class Meta:
         model = Hike
         fields = '__all__'

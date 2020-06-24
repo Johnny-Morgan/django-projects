@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.db.models import Avg, Sum
 from .models import Mountain, Hike
 from .forms import MountainForm, HikeForm
-from .filters import MountainFilter
+from .filters import MountainFilter, HikeFilter
 
 def hike_total_seconds(hike_duration):
     ''' function that converts a duration into seconds'''
@@ -138,7 +138,10 @@ def hikes(request):
     average_speed = (float(total_length) / total_hikes) / (average_seconds / 3600)
     average_speed = f'{average_speed:.2f}'
 
-    hikes = list(hikes)
+    hike_filter = HikeFilter(request.GET, queryset=hikes)
+    # check to see if a filter input is filled to create clear filter button in template
+    has_filter = any(field in request.GET for field in set(hike_filter.get_fields()))
+    hikes = hike_filter.qs
     hikes = zip(hikes, hike_avg_speed)
     context = {'hikes': hikes,
                'total_hikes': total_hikes,
@@ -151,6 +154,8 @@ def hikes(request):
                'total_time': total_time,
                'average_time': average_time,
                'average_speed': average_speed,
+               'hike_filter': hike_filter,
+               'has_filter': has_filter,
                }
     return render(request, 'tracker/hikes.html', context)
 
