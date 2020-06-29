@@ -208,6 +208,7 @@
             <table class="table table-striped table-bordered">
                 <tr>
                     <th></th>
+                    <th>Name</th>
                     <th>Length (km)</th>
                     <th>Duration</th>
                     <th>Avg speed (km/h)</th>
@@ -217,6 +218,7 @@
                 </tr>
                 {% for hike, avg_speed in hikes %}
                 <tr><td><a class="btn btn-sm btn-info" href="{% url 'hike' hike.id %}">View</a></td>
+                    <td>{{hike.name}}</td>
                     <td>{{hike.length}}</td>
                     <td>{{hike.duration}}</td>
                     <td>{{avg_speed}}</td>
