@@ -1,4 +1,6 @@
-from django.urls import path
+from django.urls import path, include
+from django.conf.urls.static import static
+from django.conf import settings
 from . import views
 
 urlpatterns = [
@@ -13,4 +15,7 @@ urlpatterns = [
     path('add_hike_form/', views.addHike, name="add_hike"),
     path('update_hike/<str:pk>/', views.updateHike, name="update_hike"),
     path('delete_hike/<str:pk>/', views.deleteHike, name="delete_hike"),
+    path('register/', views.registerPage, name="register"),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

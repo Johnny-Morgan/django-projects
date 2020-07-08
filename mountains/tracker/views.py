@@ -1,9 +1,15 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.db.models import Avg, Sum
+from django.contrib.auth.forms import UserCreationForm
 from .models import Mountain, Hike
 from .forms import MountainForm, HikeForm
 from .filters import MountainFilter, HikeFilter
+
+def registerPage(request):
+    form = UserCreationForm()
+    context = {'form': form}
+    return render(request, 'tracker/register.html', context)
 
 def hike_total_seconds(hike_duration):
     ''' function that converts a duration into seconds'''
@@ -238,3 +244,4 @@ def deleteHike(request, pk):
         return redirect('/hikes/')
     context = {'hike': hike}
     return render(request, 'tracker/delete_hike.html', context)
+
