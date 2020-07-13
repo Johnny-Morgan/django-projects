@@ -1,5 +1,7 @@
 from django import forms
 from django.forms import ModelForm
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from .models import Mountain, Hike
 
 class DateInput(forms.DateInput):
@@ -20,3 +22,8 @@ class HikeForm(ModelForm):
         widgets = {
             'hike_date': DateInput(),
         }
+
+class CreateUserForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']

@@ -3,13 +3,13 @@ from django.http import HttpResponse
 from django.db.models import Avg, Sum
 from django.contrib.auth.forms import UserCreationForm
 from .models import Mountain, Hike
-from .forms import MountainForm, HikeForm
+from .forms import MountainForm, HikeForm, CreateUserForm
 from .filters import MountainFilter, HikeFilter
 
 def registerPage(request):
-    form = UserCreationForm()
+    form = CreateUserForm()
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
     context = {'form': form}
