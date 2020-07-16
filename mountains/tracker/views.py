@@ -15,6 +15,10 @@ def registerPage(request):
     context = {'form': form}
     return render(request, 'tracker/register.html', context)
 
+def loginPage(request):
+    context = {}
+    return render(request, 'tracker/login.html', context)
+
 def hike_total_seconds(hike_duration):
     ''' function that converts a duration into seconds'''
     hike_hours = 0
