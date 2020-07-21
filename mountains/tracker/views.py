@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.db.models import Avg, Sum
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import Mountain, Hike
 from .forms import MountainForm, HikeForm, CreateUserForm
@@ -20,7 +21,16 @@ def registerPage(request):
     return render(request, 'tracker/register.html', context)
 
 def loginPage(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('home')
     context = {}
+
     return render(request, 'tracker/login.html', context)
 
 def hike_total_seconds(hike_duration):
