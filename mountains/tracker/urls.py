@@ -17,6 +17,7 @@ urlpatterns = [
     path('delete_hike/<str:pk>/', views.deleteHike, name="delete_hike"),
     path('register/', views.registerPage, name="register"),
     path('login/', views.loginPage, name="login"),
+    path('logout/', views.logoutUser, name="logout"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -29,9 +29,15 @@ def loginPage(request):
         if user is not None:
             login(request, user)
             return redirect('home')
-    context = {}
+        else:
+            messages.info(request, 'Username OR password is incorrect')
 
+    context = {}
     return render(request, 'tracker/login.html', context)
+
+def logoutUser(request):
+    logout(request)
+    return redirect('login')
 
 def hike_total_seconds(hike_duration):
     ''' function that converts a duration into seconds'''
