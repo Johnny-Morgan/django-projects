@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.db.models import Avg, Sum
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Mountain, Hike
 from .forms import MountainForm, HikeForm, CreateUserForm
@@ -54,6 +55,7 @@ def hike_total_seconds(hike_duration):
     total_hike_seconds = hike_seconds + hike_minutes * 60 + hike_hours * 3600
     return total_hike_seconds
 
+@login_required(login_url='login')
 def home(request):
     mountains = Mountain.objects.all()
     hikes = Hike.objects.all()
@@ -74,6 +76,7 @@ def home(request):
 
     return render(request, 'tracker/dashboard.html', context)
 
+@login_required(login_url='login')
 def mountains(request):
     mountains = Mountain.objects.all().order_by('-date_climbed')
     total_hills = mountains.filter(height__lt=500).count()
@@ -109,6 +112,7 @@ def mountains(request):
 
     return render(request, 'tracker/mountains.html', context)
 
+@login_required(login_url='login')
 def hikes(request):
     hikes = Hike.objects.all().order_by('-hike_date')
     hike_avg_speed = []
@@ -193,6 +197,7 @@ def hikes(request):
                }
     return render(request, 'tracker/hikes.html', context)
 
+@login_required(login_url='login')
 def peak(request, pk):
     peak = Mountain.objects.get(id=pk)
     context = {'peak':peak}
@@ -229,6 +234,7 @@ def deleteMountain(request, pk):
     context = {'mountain': mountain}
     return render(request, 'tracker/delete.html', context)
 
+@login_required(login_url='login')
 def hike(request, pk):
     hike = Hike.objects.get(id=pk)
     hours = int(hike.duration.split(':')[0])
