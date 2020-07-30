@@ -285,3 +285,6 @@ def deleteHike(request, pk):
     context = {'hike': hike}
     return render(request, 'tracker/delete_hike.html', context)
 
+def userPage(request):
+    context = {}
+    return render(request, 'tracker/user.html', context)
