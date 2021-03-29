@@ -1,235 +1,235 @@
-{% extends 'tracker/main.html' %}
-{% load widget_tweaks %}
-{% load i18n %}
-{% block content %}
-<br>
+{% extends 'tracker/main.html' %} {% load widget_tweaks %} {% load i18n %} {% block content %}
+<br />
 
 <div class="row m-1">
-    <div class="col">
-        <div class="col-md">
-            <div class="card text-center text-white mb-3" id="total-hills">
-                <div class="card-header">
-                    <h5 class="card-title">Total Hikes</h5>
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">{{total_hikes}}</h3>
-                </div>
-            </div>
-        </div>
+  <div class="col-sm-12 col-md-4 col-lg-2 offset-lg-1">
+    <div class="card text-center text-white mb-3" id="total-hills">
+      <div class="card-header">
+        <h5 class="card-title">Total Hikes</h5>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">{{total_hikes}}</h3>
+      </div>
     </div>
-    <div class="col">
-        <div class="col-md">
-            <div class="card text-center text-white mb-3" id="total-mountains">
-                <div class="card-header">
-                    <h5 class="card-title">Total Length</h5>
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">{{total_length}} km</h3>
-                </div>
-            </div>
-        </div>
+  </div>
+  <div class="col-sm-12 col-md-4 col-lg-2">
+    <div class="card text-center text-white mb-3" id="total-mountains">
+      <div class="card-header">
+        <h5 class="card-title">Total Length</h5>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">{{total_length}} km</h3>
+      </div>
     </div>
-    <div class="col">
-        <div class="col-md">
-            <div class="card text-center text-white mb-3" id="total-hikes">
-                <div class="card-header">
-                     <h5 class="card-title">Total Time</h5>
-                </div>
-                <div class="card-body">
-                     <h3 class="card-title">{{total_time}}</h3>
-                 </div>
-            </div>
-        </div>
+  </div>
+  <div class="col-sm-12 col-md-4 col-lg-2">
+    <div class="card text-center text-white mb-3" id="total-hikes">
+      <div class="card-header">
+        <h5 class="card-title">Total Time</h5>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">{{total_time}}</h3>
+      </div>
     </div>
-    <div class="col">
-        <div class="col-md">
-            <div class="card text-center text-white mb-3" id="total-hikes">
-                <div class="card-header">
-                     <h5 class="card-title">Total Ascent</h5>
-                </div>
-                <div class="card-body">
-                     <h3 class="card-title">{{total_ascent}} m</h3>
-                 </div>
-            </div>
-        </div>
+  </div>
+  <div class="col-sm-12 col-md-4 col-lg-2">
+    <div class="card text-center text-white mb-3" id="total-hikes">
+      <div class="card-header">
+        <h5 class="card-title">Total Ascent</h5>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">{{total_ascent}} m</h3>
+      </div>
     </div>
-    <div class="col">
-        <div class="col-md">
-            <div class="card text-center text-white mb-3" id="total-hikes">
-                <div class="card-header">
-                     <h5 class="card-title">Total Descent</h5>
-                </div>
-                <div class="card-body">
-                     <h3 class="card-title">{{total_descent}} m</h3>
-                 </div>
-            </div>
-        </div>
+  </div>
+  <div class="col-sm-12 col-md-4 col-lg-2">
+    <div class="card text-center text-white mb-3" id="total-hikes">
+      <div class="card-header">
+        <h5 class="card-title">Total Descent</h5>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">{{total_descent}} m</h3>
+      </div>
     </div>
+  </div>
 </div>
 
 <div class="row m-1">
-    <div class="col">
-        <div class="col-md">
-            <div class="card text-center text-white mb-3" id="total-hills">
-                <div class="card-header">
-                     <h5 class="card-title">Average Speed</h5>
-                </div>
-                <div class="card-body">
-                     <h3 class="card-title">{{average_speed}} km/h</h3>
-                 </div>
-            </div>
-        </div>
+  <div class="col-sm-12 col-md-4 col-lg-2 offset-lg-1">
+    <div class="card text-center text-white mb-3" id="total-hills">
+      <div class="card-header">
+        <h5 class="card-title">Average Speed</h5>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">{{average_speed}} km/h</h3>
+      </div>
     </div>
-    <div class="col">
-        <div class="col-md">
-            <div class="card text-center text-white mb-3" id="total-mountains">
-                <div class="card-header">
-                     <h5 class="card-title">Average Length</h5>
-                </div>
-                <div class="card-body">
-                     <h3 class="card-title">{{average_length}} km</h3>
-                 </div>
-            </div>
-        </div>
+  </div>
+  <div class="col-sm-12 col-md-4 col-lg-2">
+    <div class="card text-center text-white mb-3" id="total-mountains">
+      <div class="card-header">
+        <h5 class="card-title">Average Length</h5>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">{{average_length}} km</h3>
+      </div>
     </div>
-    <div class="col">
-        <div class="col-md">
-            <div class="card text-center text-white mb-3" id="total-hikes">
-                <div class="card-header">
-                     <h5 class="card-title">Average Time</h5>
-                </div>
-                <div class="card-body">
-                     <h3 class="card-title">{{average_time}} hours</h3>
-                 </div>
-            </div>
-        </div>
+  </div>
+  <div class="col-sm-12 col-md-4 col-lg-2">
+    <div class="card text-center text-white mb-3" id="total-hikes">
+      <div class="card-header">
+        <h5 class="card-title">Average Time</h5>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">{{average_time}} hours</h3>
+      </div>
     </div>
-    <div class="col">
-        <div class="col-md">
-            <div class="card text-center text-white mb-3" id="total-hikes">
-                <div class="card-header">
-                     <h5 class="card-title">Average Ascent</h5>
-                </div>
-                <div class="card-body">
-                     <h3 class="card-title">{{average_ascent}} m</h3>
-                 </div>
-            </div>
-        </div>
+  </div>
+  <div class="col-sm-12 col-md-4 col-lg-2">
+    <div class="card text-center text-white mb-3" id="total-hikes">
+      <div class="card-header">
+        <h5 class="card-title">Average Ascent</h5>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">{{average_ascent}} m</h3>
+      </div>
     </div>
-    <div class="col">
-        <div class="col-md">
-            <div class="card text-center text-white mb-3" id="total-hikes">
-                <div class="card-header">
-                     <h5 class="card-title">Average Descent</h5>
-                </div>
-                <div class="card-body">
-                     <h3 class="card-title">{{average_descent}} m</h3>
-                 </div>
-            </div>
-        </div>
+  </div>
+  <div class="col-sm-12 col-md-4 col-lg-2">
+    <div class="card text-center text-white mb-3" id="total-hikes">
+      <div class="card-header">
+        <h5 class="card-title">Average Descent</h5>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">{{average_descent}} m</h3>
+      </div>
     </div>
+  </div>
 </div>
 
-
-<div class="row m-3">
-    <div class="col-md">
-        <div class="card card-body">
-            <a class="btn btn-primary btn-block" href="{% url 'add_hike' %}">Add Hike</a>
-        </div>
+<div class="row m-1 mb-3">
+  <div class="col-md">
+    <div class="card card-body">
+      <a class="btn btn-primary btn-block" href="{% url 'add_hike' %}"
+        >Add Hike</a
+      >
     </div>
+  </div>
 </div>
 
-<div class="row m-3">
-    <div class="col-md">
-        <div class="card card-body"  id="accordion">
-            <div class="card" id="headingOne">
-                <a class="btn btn-primary btn-block" data-toggle="collapse" data-target="#collapseOne" 
-                    aria-expanded="true" aria-controls="collapseOne" style="color: #fff;">
-                    Filter Hikes
-                </a>
+<div class="row m-1 mb-3">
+  <div class="col-md">
+    <div class="card card-body" id="accordion">
+      <div class="card" id="headingOne">
+        <a
+          class="btn btn-primary btn-block"
+          data-toggle="collapse"
+          data-target="#collapseOne"
+          aria-expanded="true"
+          aria-controls="collapseOne"
+          style="color: #fff"
+        >
+          Filter Hikes
+        </a>
+      </div>
+      <div
+        id="collapseOne"
+        class="collapse.sho"
+        aria-labelledby="headingOne"
+        data-parent="#accordion"
+      >
+        <div class="card-body">
+          <form method="get">
+            <div class="row">
+              <div class="form-group col-sm-4 col-md-3">
+                {{ hike_filter.form.name.label_tag }} {% render_field
+                hike_filter.form.name class="form-control" %}
+              </div>
+              <div class="form-group col-sm-4 col-md-3">
+                {{ hike_filter.form.notes.label_tag }} {% render_field
+                hike_filter.form.notes class="form-control" %}
+              </div>
             </div>
-            <div id="collapseOne" class="collapse.sho" aria-labelledby="headingOne" data-parent="#accordion">
-                <div class="card-body">
-                    <form method="get">
-                        <div class="row">
-                            <div class="form-group col-sm-4 col-md-3">
-                                {{ hike_filter.form.name.label_tag }}
-                                {% render_field hike_filter.form.name class="form-control" %}
-                            </div>
-                            <div class="form-group col-sm-4 col-md-3">
-                                {{ hike_filter.form.notes.label_tag }}
-                                {% render_field hike_filter.form.notes class="form-control" %}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-sm-4 col-md-3">
-                                {{ hike_filter.form.less_than_length.label_tag }}
-                                {% render_field hike_filter.form.less_than_length class="form-control" %}
-                            </div>
-                            <div class="form-group col-sm-4 col-md-3">
-                                {{ hike_filter.form.greater_than_length.label_tag }}
-                                {% render_field hike_filter.form.greater_than_length class="form-control" %}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-sm-4 col-md-3">
-                                {{ hike_filter.form.less_than_duration.label_tag }}
-                                {% render_field hike_filter.form.less_than_duration class="form-control" %}
-                            </div>
-                            <div class="form-group col-sm-4 col-md-3">
-                                {{ hike_filter.form.greater_than_duration.label_tag }}
-                                {% render_field hike_filter.form.greater_than_duration class="form-control" %}
-                            </div>
-                        
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-sm-4 col-md-3">
-                                {{ hike_filter.form.start_date.label_tag }}
-                                {% render_field hike_filter.form.start_date class="form-control" %}
-                            </div>
-                            <div class="form-group col-sm-4 col-md-3">
-                                {{ hike_filter.form.end_date.label_tag }}
-                                {% render_field hike_filter.form.end_date class="form-control" %}
-                            </div>
-                        </div>
-                        <button class="btn btn-primary" type="submit">Filter</button>
-                        {% if has_filter %}
-                            <a class = "btn btn-danger" href="{% url 'hikes' %}">{% trans 'Clear filters' %}</a>
-                        {% endif %}
-                    </form>
-                </div>
+            <div class="row">
+              <div class="form-group col-sm-4 col-md-3">
+                {{ hike_filter.form.less_than_length.label_tag }} {%
+                render_field hike_filter.form.less_than_length
+                class="form-control" %}
+              </div>
+              <div class="form-group col-sm-4 col-md-3">
+                {{ hike_filter.form.greater_than_length.label_tag }} {%
+                render_field hike_filter.form.greater_than_length
+                class="form-control" %}
+              </div>
             </div>
+            <div class="row">
+              <div class="form-group col-sm-4 col-md-3">
+                {{ hike_filter.form.less_than_duration.label_tag }} {%
+                render_field hike_filter.form.less_than_duration
+                class="form-control" %}
+              </div>
+              <div class="form-group col-sm-4 col-md-3">
+                {{ hike_filter.form.greater_than_duration.label_tag }} {%
+                render_field hike_filter.form.greater_than_duration
+                class="form-control" %}
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-4 col-md-3">
+                {{ hike_filter.form.start_date.label_tag }} {% render_field
+                hike_filter.form.start_date class="form-control" %}
+              </div>
+              <div class="form-group col-sm-4 col-md-3">
+                {{ hike_filter.form.end_date.label_tag }} {% render_field
+                hike_filter.form.end_date class="form-control" %}
+              </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Filter</button>
+            {% if has_filter %}
+            <a class="btn btn-danger" href="{% url 'hikes' %}"
+              >{% trans 'Clear filters' %}</a
+            >
+            {% endif %}
+          </form>
         </div>
+      </div>
     </div>
+  </div>
 </div>
-<div class="row m-3">
-    <div class="col-md">
-        <div class="card card-body">
-            <table class="table table-striped table-bordered">
-                <tr>
-                    <th></th>
-                    <th>Name</th>
-                    <th>Length (km)</th>
-                    <th>Duration</th>
-                    <th>Avg speed (km/h)</th>
-                    <th>Total Ascent (m)</th>
-                    <th>Total Descent (m)</th>
-                    <th>Date</th>
-                </tr>
-                {% for hike, avg_speed in hikes %}
-                <tr><td><a class="btn btn-sm btn-info" href="{% url 'hike' hike.id %}">View</a></td>
-                    <td>{{hike.name}}</td>
-                    <td>{{hike.length}}</td>
-                    <td>{{hike.duration}}</td>
-                    <td>{{avg_speed}}</td>
-                    <td>{{hike.total_ascent}}</td>
-                    <td>{{hike.total_descent}}</td>
-                    <td>{{hike.hike_date}}</td>
-                </tr>
-                {% endfor %}
-            </table>
-        </div>
-
+<div class="row m-1">
+  <div class="col-md">
+    <div class="card card-body">
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Length (km)</th>
+            <th>Duration</th>
+            <th>Avg speed (km/h)</th>
+            <th>Total Ascent (m)</th>
+            <th>Total Descent (m)</th>
+            <th>Date</th>
+          </tr>
+          {% for hike, avg_speed in hikes %}
+          <tr>
+            <td>
+              <a class="btn btn-sm btn-info" href="{% url 'hike' hike.id %}"
+                >View</a
+              >
+            </td>
+            <td>{{hike.name}}</td>
+            <td>{{hike.length}}</td>
+            <td>{{hike.duration}}</td>
+            <td>{{avg_speed}}</td>
+            <td>{{hike.total_ascent}}</td>
+            <td>{{hike.total_descent}}</td>
+            <td>{{hike.hike_date}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
     </div>
+  </div>
 </div>
 {% endblock %}
